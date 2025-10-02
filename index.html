@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KM ↔ Miles Converter</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+             background: linear-gradient(135deg,#647fd5,#743232);
+              min-height:100vh; 
+            }
+
+        .card {
+             max-width:800px; 
+             margin:auto; 
+             margin-top:6vh;
+            border-radius:12px;
+        }
+
+        .unit-label {
+             font-weight:800; 
+        }
+      </style>
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark mb-5">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1">
+                Convertor
+            </span>
+        </div>
+    </nav>
+
+    <div class="container py-4">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h3 class="card-title mb-1">Kilometer <-> Mile Convertor</h3>
+
+                <div class="row align-items-center g-3">
+
+                    <div class="col-12 col-md-6">
+                        <label for="kmInput" class="form-lable unit-lable">
+                            Killometer (km)
+                        </label>
+                        <div class="input-group">
+                            <input type="number" id="kmInput" class="form-control" step="any" min="0" placeholder="E.g. 4"/>
+                            <span class="input-group-text">km</span>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <label for="mileInput" class="form-lable unit-lable">
+                            Miles (mi)
+                        </label>
+                        <div class="input-group">
+                            <input type="number" id="mileInput" class="form-control" step="any" min="0" placeholder="E.g. 5.1"/>
+                            <span class="input-group-text">mi</span>
+                        </div>
+                    </div>    
+                </div>
+
+                <button id="clearBtn" class="btn btn-outline-secondary mt-3">Clear</button>    
+            </div>
+            <div class="small text-muted">
+                Conversion factors used: <strong>1 km = 0.62137119223733 miles</strong> (scientific standard). Values update while typing.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Elements
+        const kmInput = document.getElementById('kmInput');
+        const mileInput = document.getElementById('mileInput');
+        const clearBtn = document.getElementById('clearBtn');
+         
+        const KM_TO_MILES = 0.62137119223733;
+    
+        let programmaticChange = false;
+        let roundTo4 = true;
+    
+        function fmt(v){
+          if (v === '' || v === null || isNaN(v)) return '';
+          if (roundTo4) return Number(v).toFixed(4).replace(/\.0+$/,'');
+          return String(Number(v));
+        }
+    
+        function maybeSet(el, val){
+          programmaticChange = true;
+          el.value = (val === '' ? '' : fmt(val));
+         
+          setTimeout(()=> programmaticChange = false, 0);
+        }
+    
+        function kmChanged(){
+          if (programmaticChange) return;
+          const km = kmInput.value;
+          if (km === '') { maybeSet(mileInput, ''); return; }
+          const miles = parseFloat(km) * KM_TO_MILES;
+          maybeSet(mileInput, miles);
+        }
+    
+        function mileChanged(){
+          if (programmaticChange) return;
+          const mi = mileInput.value;
+          if (mi === '') { maybeSet(kmInput, ''); return; }
+          const km = parseFloat(mi) / KM_TO_MILES;
+          maybeSet(kmInput, km);
+        }
+    
+        kmInput.addEventListener('input', kmChanged);
+        mileInput.addEventListener('input', mileChanged);
+    
+        clearBtn.addEventListener('click', ()=>{
+          maybeSet(kmInput, '');
+          maybeSet(mileInput, '');
+        });
+    
+        if (kmInput.value) kmChanged();
+        else if (mileInput.value) mileChanged();
+      </script>
+</body>
+</html>
