@@ -1,0 +1,177 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(135deg, #a6a6da 0%, #16317b 50%, #0f6017 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #e2e8f0;
+}
+
+.game-container {
+    background: rgba(5, 120, 133, 0.95);
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    border-radius: 24px;
+    padding: 35px;
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+    backdrop-filter: blur(10px);
+}
+
+.game-title {
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+    background: linear-gradient(135deg, #faa060, #4517d2, #dd0a77);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: none;
+}
+
+.game-status {
+    margin-bottom: 25px;
+}
+
+#status-text {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #f1f5f9;
+    padding: 12px 20px;
+    background: linear-gradient(135deg, rgba(2, 19, 46, 0.15), rgba(44, 12, 74, 0.15));
+    border: 1px solid rgba(1, 14, 35, 0.3);
+    border-radius: 12px;
+    transition: all 0.3 ease;
+}
+
+/* score board style */
+.score-board {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background: linear-gradient (135deg, rgba(30, 41, 59, 0.8),
+            rgba(51, 65, 85, 0.6));
+    border: 1px solid rgba(55, 80, 115, 0.2);
+    border-radius: 16px;
+}
+
+.score-item {
+    text-align: center;
+    font-weight: 600;
+}
+
+.score-item span:first-child {
+    display: block;
+    font-size: 0.95rem;
+    color: #94a3b8;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.score-item span:last-child {
+    font-size: 1.8rem;
+    font-weight: bold;
+    background: linear-gradient(135deg, #60a5fa, #a78bfa);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 8px;
+}
+
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 10px;
+    padding: 20px;
+    background: linear-gradient(135deg, #061226, #334155);
+    margin: 25px auto;
+    max-width: 360px;
+    border-radius: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.cell {
+    width: 95px;
+    height: 95px;
+    border: 2px solid rgba(148, 164, 184, 0.2);
+    border-radius: 12px;
+    background: linear-gradient(135deg, #8fa5ab, #64748b);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    color: #f1f5f9;
+    transition: all 0.3 ease;
+}
+
+.cell:hover {
+    background: linear-gradient(135deg, #64748b, #94a3b8);
+    border-color: rgba(59, 130, 246, 0.5);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.cell:disabled {
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
+.cell.x {
+    color: #60a5fa;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(37, 99, 235, 0.3));
+    border-color: rgba(59, 130, 246, 0.5);
+    text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+}
+
+.cell.o {
+    color: #f472b6;
+    background: linear-gradient(135deg, rgba(244, 144, 182, 0.2), rgba(236, 99, 153, 0.3));
+    border-color: rgba(244, 144, 182, 0.5);
+    text-shadow: 0 0 10px rgba(244, 144, 182, 0.5);
+}
+
+.cell.animate {
+    animation: cellclick 0.4s ease;
+}
+
+@keyframes cellclick {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(0.85);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.cell.winner {
+    animation: winnerGlow 1.2s ease-in-out infinite;
+}
+
+@keyframes winnerGlow {
+    0% {
+        transform: scale(1);
+        border-color: rgba(34, 197, 94, 0.3);
+    }
+
+    100% {
+        transform: scale(1.08);
+        border-color: rgba(34, 197, 94, 1);
+    }
+}
+
