@@ -5,16 +5,16 @@
 }
 
 body {
-    background: linear-gradient(135deg, #a6a6da 0%, #16317b 50%, #0f6017 100%);
+    background: linear-gradient(135deg, #9d9de2 0%, #6376a8 50%, #4dc659 100%);
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #e2e8f0;
+    color: #ecf0f6;
 }
 
 .game-container {
-    background: rgba(5, 120, 133, 0.95);
+    background: linear-gradient(135deg, #bdee1e 0%, #516fc2 50%, #20ff36 100%);
     border: 1px solid rgba(148, 163, 184, 0.2);
     border-radius: 24px;
     padding: 35px;
@@ -28,7 +28,7 @@ body {
     font-size: 2.8rem;
     font-weight: 700;
     margin-bottom: 25px;
-    background: linear-gradient(135deg, #faa060, #4517d2, #dd0a77);
+    background: linear-gradient(135deg, #c3631e, #4517d2, #dd0a77);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -42,22 +42,23 @@ body {
 #status-text {
     font-size: 1.3rem;
     font-weight: 600;
-    color: #f1f5f9;
+    color: #f1f3f6;
     padding: 12px 20px;
-    background: linear-gradient(135deg, rgba(2, 19, 46, 0.15), rgba(44, 12, 74, 0.15));
+    background: linear-gradient(135deg, rgba(113, 118, 125, 0.15), rgba(133, 74, 188, 0.15));
     border: 1px solid rgba(1, 14, 35, 0.3);
     border-radius: 12px;
     transition: all 0.3 ease;
 }
 
+
 /* score board style */
+
 .score-board {
     display: flex;
     justify-content: space-between;
     padding: 20px;
-    background: linear-gradient (135deg, rgba(30, 41, 59, 0.8),
-            rgba(51, 65, 85, 0.6));
-    border: 1px solid rgba(55, 80, 115, 0.2);
+    background: linear-gradient (135deg, rgba(69, 7, 79, 0.8), rgba(0, 44, 105, 0.6));
+    border: 1px solid white;
     border-radius: 16px;
 }
 
@@ -69,7 +70,7 @@ body {
 .score-item span:first-child {
     display: block;
     font-size: 0.95rem;
-    color: #94a3b8;
+    color: #e9ecf1;
     margin-bottom: 8px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -78,11 +79,12 @@ body {
 .score-item span:last-child {
     font-size: 1.8rem;
     font-weight: bold;
-    background: linear-gradient(135deg, #60a5fa, #a78bfa);
+    background: linear-gradient(135deg, #cc2d28, #33109b);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: 8px;
+    color: #e9ecf1;
 }
 
 .game-board {
@@ -128,32 +130,60 @@ body {
 }
 
 .cell.x {
-    color: #60a5fa;
+    color: #e6eaee;
     background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(37, 99, 235, 0.3));
     border-color: rgba(59, 130, 246, 0.5);
     text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
 }
 
 .cell.o {
-    color: #f472b6;
+    color: #e8dae1;
     background: linear-gradient(135deg, rgba(244, 144, 182, 0.2), rgba(236, 99, 153, 0.3));
-    border-color: rgba(244, 144, 182, 0.5);
-    text-shadow: 0 0 10px rgba(244, 144, 182, 0.5);
+    border-color: rgba(250, 243, 246, 0.5);
+    text-shadow: 0 0 10px rgba(239, 119, 165, 0.5);
 }
 
 .cell.animate {
     animation: cellclick 0.4s ease;
 }
 
+.game-controls {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 2rem;
+}
+
+.reset-btn {
+    padding: 12px 25px;
+    background: transparent;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.reset-btn:hover {
+    background: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+.reset-btn:active {
+    transform: translateY(0px);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
 @keyframes cellclick {
     0% {
         transform: scale(1);
     }
-
     50% {
         transform: scale(0.85);
     }
-
     100% {
         transform: scale(1);
     }
@@ -168,10 +198,8 @@ body {
         transform: scale(1);
         border-color: rgba(34, 197, 94, 0.3);
     }
-
     100% {
         transform: scale(1.08);
         border-color: rgba(34, 197, 94, 1);
     }
 }
-
